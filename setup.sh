@@ -55,10 +55,13 @@ sudo apt-get install -y -qq \
     libaio-dev \
     curl wget git \
     fonts-nanum fonts-nanum-coding \
+    fonts-noto-cjk \
     > /dev/null 2>&1
 # matplotlib 폰트 캐시 갱신 (한글 그래프용)
 fc-cache -fv > /dev/null 2>&1 || true
-print_ok "시스템 패키지 설치 완료 (한글 폰트 포함)"
+# matplotlib 자체 캐시도 stale 일 수 있으므로 제거 (다음 import 시 자동 재구축)
+rm -rf ~/.cache/matplotlib 2>/dev/null || true
+print_ok "시스템 패키지 설치 완료 (Nanum + Noto CJK 한글 폰트 포함, matplotlib 캐시 초기화)"
 
 # ----- 2. NVIDIA 드라이버 확인 -----
 print_step "NVIDIA 드라이버 확인"

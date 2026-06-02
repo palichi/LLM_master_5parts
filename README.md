@@ -1,182 +1,191 @@
-# LLM 최신 기술 마스터 과정: sLLM 기반 에이전트 서비스 만들기
+# 거대언어모델(LLM)의 활용 및 개발 전략
 
-> AI 원내교육 고급과정 | 강사: 김의중 (아이덴티파이 대표)
+> 2026학년도 K-DT 강사아카데미(전공) · 120시간(15일) 집중 과정
+> 강사: **김의중** (아이덴티파이 대표) · 참고도서: 『딥러닝 개념과 활용』(미어드스페이스)
 
-## 교육 목표
+딥러닝 개념부터 실전 AI 에이전트 개발·배포까지, 현업에서 즉시 활용 가능한
+**LLM 풀스택 역량**을 15일 안에 완성하는 집중 과정입니다.
+매 일차마다 핵심 이론을 익힌 뒤, 그 지식을 실습으로 즉시 검증하는 구조로 설계됐습니다.
 
-- **LLM 핵심 원리 이해**: Transformer 아키텍처, Attention, Position Encoding의 수학적 원리
-- **모델 파인튜닝 직접 구현**: HuggingFace Hub 기반 SFT, LoRA, DPO, GRPO 코드 구현
-- **RAG 시스템 설계/구축**: Vector RAG, Graph RAG, 온톨로지 RAG 구축 (Apache AGE 기반)
-- **AI 에이전트 개발**: LangGraph, AG2, MCP, Function Calling 활용 멀티 에이전트 시스템
-- **지식 증류 & 최신 연구**: DeepSeek-R1의 CoT 증류, GRPO 강화학습 구조 분석
-- **Vibe Coding 실무 활용**: Claude Code, Windsurf 등 AI 코딩 도구 활용
-- **클라우드 배포 & 모니터링**: AWS/GCP 기반 에이전트 배포, GitHub 형상 관리, LangSmith 모니터링
+---
 
-## 선수 지식
+## 🎯 학습 목표
 
-- Python 프로그래밍 기초
-- 선형대수 및 확률 통계 기초
-- 딥러닝 개념
-- PyTorch 기초
-- VSCode 등 IDE 사용 경험
+1. **LLM 핵심 원리** — Transformer · Attention · Position Encoding 을 수학적으로 이해
+2. **모델 파인튜닝** — SFT · LoRA · DPO · GRPO 를 코드로 구현하고 도메인에 정렬
+3. **RAG 시스템** — Vector / Graph / Ontology RAG (Apache AGE) 직접 구축
+4. **AI 에이전트** — LangGraph · MCP · A2A · Function Calling 로 멀티 에이전트 시스템
+5. **Vibe Coding** — Claude Code · Windsurf 로 복잡한 에이전트를 자연어로 빠르게 개발
+6. **클라우드 배포 & 모니터링** — AWS/GCP 배포, LangSmith 로 성능 모니터링
 
-## 실습 환경
+## 👥 학습 대상
 
-- **GPU**: NVIDIA RTX 4060+ (8GB VRAM 이상)
-- **Python**: 3.10+
-- **CUDA**: 12.1+
-- **디스크**: 50GB 이상 여유 공간
-- **사용 SW**: HuggingFace Hub, PostgreSQL, ChromaDB, Neo4j
+- K-디지털 훈련과정 강사로 활동을 희망하며, 최근 3년 내 관련 분야 실무 6개월 이상
+- AWS · Docker 경험이 있고 클라우드 분야 강사 활동을 시작하려는 분
+- Python · 딥러닝 기초 보유 + LLM API 사용 경험자
+- LLM 파인튜닝 · RAG · 에이전트 개발 경험을 쌓고 싶은 분
 
-## 환경 설정
+## 📋 선수 지식
+
+`Python 기초` · `딥러닝 개념` · `PyTorch 기초` · `HuggingFace Trainer` · `SQL` · `REST API` · `Docker 기초`
+
+---
+
+## ⚡ 빠른 시작
 
 ```bash
-# 1. 저장소 클론
+# 1) 저장소 클론
 git clone https://github.com/choki0715/LLM_master_5parts.git
 cd LLM_master_5parts
 
-# 2. 자동 환경 설정 (Ubuntu)
+# 2) 환경 자동 설치 (CUDA · Ollama · VS Code 포함, 약 5~15분)
 bash setup.sh
 
-# 또는 수동 설정:
-# 2-1. 가상환경 생성
-python -m venv venv
-source venv/bin/activate  # Windows: venv\Scripts\activate
-
-# 2-2. 패키지 설치
-pip install -r requirements.txt
-
-# 3. 환경 변수 설정
+# 3) API 키 입력
 cp .env.example .env
-# .env 파일에 API 키 입력
+#   .env 에 OPENAI_API_KEY, ANTHROPIC_API_KEY, HF_TOKEN 채우기
 
-# 4. 환경 점검
-jupyter notebook setup_check.ipynb
+# 4) Jupyter 커널 "Python (LLM)" 선택 후 노트북 실행
 ```
 
----
-
-## 커리큘럼
-
-### 1파트: LLM 기초와 생태계
-
-#### [01] 딥러닝, 자연어 처리, 트랜스포머, LLM 기본
-| 노트북 | 내용 |
-|--------|------|
-| `part1/01_deep_learning_basics.ipynb` | 딥러닝 개념과 언어모델의 역사 |
-| `part1/02_nlp_encoding_tokenization.ipynb` | 자연어 처리: 인코딩, 토큰화, 임베딩(Word2Vec) |
-| `part1/03_transformer_bert_gpt.ipynb` | 트랜스포머: Attention, BERT, GPT 구조 비교 |
-| `part1/04_llm_overview_sllm.ipynb` | LLM 현황 및 sLLM 기본 실습 |
-
-#### [02] HuggingFace 생태계, LangChain, microGPT 실습
-| 노트북 | 내용 |
-|--------|------|
-| `part1/05_huggingface_ecosystem.ipynb` | HuggingFace 생태계 및 활용 방법 |
-| `part1/06_langchain_practice.ipynb` | LangChain 실습 |
-| `part1/07_microgpt_practice.ipynb` | microGPT 실습: 의존성 없는 243줄 순수 Python GPT (Karpathy 2026) — autograd 직접 구현 |
+> **가벼운 설치만 원하면**: `pip install -r requirements.txt` 만 실행 (CUDA·Ollama는 별도)
+> **검증**: 끝나면 [setup_check.ipynb](setup_check.ipynb) 로 25개 핵심 패키지 동작 확인
 
 ---
 
-### 2파트: 지식 증류와 파인튜닝
+## 📅 5 Parts × 3일 = 15일 커리큘럼
 
-#### [03] 지식증류와 MoE 아키텍처
-| 노트북 | 내용 |
-|--------|------|
-| `part2/08_knowledge_distillation.ipynb` | 지식증류: 하드 증류, 소프트 증류, Temperature 작동 원리 |
-| `part2/09_scaling_law.ipynb` | Scaling Law: 최적의 데이터 규모와 모델 크기 결정 |
-| `part2/10_moe_deepseek.ipynb` | MoE: DeepSeek의 차별화, 학습 및 추론 속도의 우수성 |
+각 Part = 1주차 = 3일치 분량 · 매일 8시간 · 이론 + 실습. **굵은 글씨** = 메인 실습 노트북.
 
-#### [04] 파인튜닝: SFT, PEFT(LoRA), 고품질 데이터셋 만들기
-| 노트북 | 내용 |
-|--------|------|
-| `part2/11_finetuning_overview.ipynb` | 파인튜닝 개념 정리: SFT/CPT/IT, FFT/PEFT, LoRA/QLoRA 한눈에 보기 |
-| `part2/11a_transformers_trl_basics.ipynb` | HF Transformers / TRL 기본 사용법 (AutoModel · Pipeline · SFTTrainer 인터페이스 미리보기) |
-| `part2/12a_lora_peft_theory.ipynb` | 부분 미세조정 (PEFT): LoRA 이론 |
-| `part2/12b_lora_peft_practice.ipynb` | LoRA vs FFT 실전 비교 실습 |
-| `part2/12c_unsloth_finetuning.ipynb` | Unsloth 기반 파인튜닝 — LoRA/QLoRA 2배 가속·60% 메모리 절감 (Ampere+ GPU 필요) |
-| `part2/13_data_synthetic_distillation.ipynb` | 데이터 파이프라인(Alpaca/ChatML, 정제·증강) + 합성 데이터·Distillation (Self-Instruct, GPT-4 활용) |
-| `part2/14_sft_huggingface_trl.ipynb` | 전체 미세조정: HuggingFace Trainer API vs SFTTrainer (TRL) |
-| `part2/15_continuous_learning.ipynb` | 지속 학습 (Continuous Pretraining) |
-| `part2/16_instruction_tuning.ipynb` | Instruction 학습 |
-| `part2/16b_llm_as_judge.ipynb` | LLM-as-a-Judge 자동 평가 (BLEU/ROUGE/BERTScore + GPT-4 Single/Pairwise) |
+### Part 1 — LLM 기초: 딥러닝부터 microGPT까지
 
----
+| 일차 | 주제 | 노트북 |
+|:-:|---|---|
+| **1일차** | LLM 현황 · 딥러닝 기초 · 자연어 처리 · 순차 모델 (RNN/LSTM/Seq2Seq) | **[01_deep_learning_basics](part1/01_deep_learning_basics.ipynb)** · [02_nlp_encoding_tokenization](part1/02_nlp_encoding_tokenization.ipynb) |
+| **2일차** | Transformer 아키텍처 · GPT/BERT · HuggingFace 생태계 · LangChain | [03_transformer_bert_gpt](part1/03_transformer_bert_gpt.ipynb) · [04_llm_overview_sllm](part1/04_llm_overview_sllm.ipynb) · **[05_huggingface_ecosystem](part1/05_huggingface_ecosystem.ipynb)** · **[06_langchain_practice](part1/06_langchain_practice.ipynb)** |
+| **3일차** | microGPT 한국어 실습 — 243줄 GPT 직접 구현 (의존성 0, GPU 불필요) | **[07_microgpt_practice](part1/07_microgpt_practice.ipynb)** |
 
-### 3파트: 정렬, 강화학습, 양자화
+### Part 2 — 파인튜닝: 지식증류 · SFT · LoRA · 데이터 파이프라인
 
-#### [05] LLM 정렬 및 추론 강화
-| 노트북 | 내용 |
-|--------|------|
-| `part3/17_rl_basics_alignment.ipynb` | 강화학습 기초, 정렬 및 강화학습 |
-| `part3/18_preference_data.ipynb` | Preference 데이터 수집/생성 |
-| `part3/19_dpo_practice.ipynb` | DPO 학습 실습 |
-| `part3/20_deepseek_r1_analysis.ipynb` | DeepSeek-R1 사례 분석 (전환점: RS+GRPO 동기) |
-| `part3/20b_rejection_sampling_sft.ipynb` | Rejection Sampling + SFT 실습 (Best-of-N + LLM Judge → 자가 증류) |
-| `part3/21_grpo_practice.ipynb` | GRPO 이론 및 실습 |
+| 일차 | 주제 | 노트북 |
+|:-:|---|---|
+| **4일차** | 지식증류 · Scaling Laws (Kaplan/Chinchilla) · MoE (DeepSeek-V3/Mixtral) | **[08_knowledge_distillation](part2/08_knowledge_distillation.ipynb)** · [09_scaling_law](part2/09_scaling_law.ipynb) · [10_moe_deepseek](part2/10_moe_deepseek.ipynb) |
+| **5일차** | SFT 일반·심화 · LoRA/PEFT · Unsloth 가속 | [11_finetuning_overview](part2/11_finetuning_overview.ipynb) · [11a_transformers_trl_basics](part2/11a_transformers_trl_basics.ipynb) · [12a_lora_peft_theory](part2/12a_lora_peft_theory.ipynb) · **[12b_lora_peft_practice](part2/12b_lora_peft_practice.ipynb)** · [12c_unsloth_finetuning](part2/12c_unsloth_finetuning.ipynb) |
+| **6일차** | 고품질 SFT 데이터 구축 · TRL 학습 · Instruction Tuning · LLM-as-Judge | **[13_data_synthetic_distillation](part2/13_data_synthetic_distillation.ipynb)** · [14_sft_huggingface_trl](part2/14_sft_huggingface_trl.ipynb) · [15_continuous_learning](part2/15_continuous_learning.ipynb) · **[16_instruction_tuning](part2/16_instruction_tuning.ipynb)** · [16b_llm_as_judge](part2/16b_llm_as_judge.ipynb) |
 
-#### [06] 모델 경량화: 양자화 기법
-| 노트북 | 내용 |
-|--------|------|
-| `part3/22_quantization_concepts.ipynb` | 양자화 개념 및 기법 비교분석 |
-| `part3/23_gptq_awq_qlora.ipynb` | GPTQ, AWQ, QLoRA 비교 |
-| `part3/24_quantization_practice.ipynb` | 양자화 실습 |
-| `part3/25_vllm_serving.ipynb` | vLLM 서빙: PagedAttention과 OpenAI 호환 API |
+### Part 3 — 정렬·강화학습: RLHF · DPO · GRPO · 양자화 · 서빙
 
----
+| 일차 | 주제 | 노트북 |
+|:-:|---|---|
+| **7일차** | 양자화 (GPTQ/AWQ/GGUF/QLoRA) + RL 정렬 기초 (MDP·PPO) | **[17_rl_basics_alignment](part3/17_rl_basics_alignment.ipynb)** · [22_quantization_concepts](part3/22_quantization_concepts.ipynb) · [23_gptq_awq_qlora](part3/23_gptq_awq_qlora.ipynb) · **[24_quantization_practice](part3/24_quantization_practice.ipynb)** |
+| **8일차** | DPO vs RLHF — Bradley-Terry · 한국어 DPO 학습 (Llama-3.2-3B + TRL) | [18_preference_data](part3/18_preference_data.ipynb) · **[19_dpo_practice](part3/19_dpo_practice.ipynb)** · 보조: [rlhf_to_dpo_slides.pptx](part3/rlhf_to_dpo_slides.pptx) |
+| **9일차** | GRPO + DeepSeek R1 분석 + Rejection Sampling SFT + vLLM 서빙 | [20_deepseek_r1_analysis](part3/20_deepseek_r1_analysis.ipynb) · [20b_rejection_sampling_sft](part3/20b_rejection_sampling_sft.ipynb) · **[21_grpo_practice](part3/21_grpo_practice.ipynb)** · [25_vllm_serving](part3/25_vllm_serving.ipynb) |
 
-### 4파트: RAG 시스템
+### Part 4 — RAG: Vector · Advanced · Graph · Ontology
 
-#### [07] 지식 증강 및 RAG 기초
-| 노트북 | 내용 |
-|--------|------|
-| `part4/26_rag_fundamentals.ipynb` | RAG 기본개념과 파이프라인 |
-| `part4/27_vector_db_comparison.ipynb` | 벡터 DB 심층 비교 분석 및 실습 |
-| `part4/28_rag_practice.ipynb` | LangChain RAG 어플리케이션 구현 |
+| 일차 | 주제 | 노트북 |
+|:-:|---|---|
+| **10일차** | RAG 기술 스택 (기초·벡터DB·실습·평가) + Streamlit 챗봇 배포 | [26_rag_fundamentals](part4/26_rag_fundamentals.ipynb) · [27_vector_db_comparison](part4/27_vector_db_comparison.ipynb) · **[28_rag_practice](part4/28_rag_practice.ipynb)** + [Streamlit 앱](part4/28_rag_streamlit_app/) · [32_rag_evaluation](part4/32_rag_evaluation.ipynb) |
+| **11일차** | Graph RAG — Neo4j · Apache AGE · LangChain GraphRAG · 4-hop 멀티홉 | [29_advanced_rag_base](part4/29_advanced_rag_base.ipynb) · **[30_graph_rag](part4/30_graph_rag.ipynb)** + [companies.txt](part4/data/companies.txt) |
+| **12일차** | Ontology RAG · 팔란티어 전략 · 월드 모델 (기업 거버넌스 + 1인 1회장 제약) | **[31_ontology_rag](part4/31_ontology_rag.ipynb)** (OntologyReasoner + OntologyWorldModel) |
 
-#### [08] 그래프 RAG, 온톨로지 RAG, 평가
-| 노트북 | 내용 |
-|--------|------|
-| `part4/29_advanced_rag_base.ipynb` | 벡터 RAG의 한계 및 Advanced RAG |
-| `part4/30_graph_rag.ipynb` | 그래프 RAG: Neo4j 기반 지식 그래프 |
-| `part4/31_ontology_rag.ipynb` | 온톨로지 RAG: Apache AGE 기반 추론 시스템 |
-| `part4/32_rag_evaluation.ipynb` | RAG 평가: RAGAS 자동 평가 및 LLM-as-a-Judge |
+### Part 5 — 에이전트: Vibe Coding · MCP · A2A · LangGraph · 통합 프로젝트
+
+| 일차 | 주제 | 노트북 |
+|:-:|---|---|
+| **13일차** | Vibe Coding 개념 + Claude Code 실습 환경 구축 | **[33_vibe_coding_intro](part5/33_vibe_coding_intro.ipynb)** · [34_claude_code_agent](part5/34_claude_code_agent.ipynb) |
+| **14일차** | Agentic AI — Tool Calling · MCP · A2A · LangGraph 멀티 에이전트 | [35_tool_calling_function](part5/35_tool_calling_function.ipynb) · **[36_mcp_agent](part5/36_mcp_agent.ipynb)** · **[37_a2a_protocol](part5/37_a2a_protocol.ipynb)** · [38_agent_tech_stack_langgraph](part5/38_agent_tech_stack_langgraph.ipynb) |
+| **15일차** | 프로젝트 발표 & 배포 — MCP+LangGraph+A2A 통합 에이전트 (FastAPI 배포) | [39_data_pipeline_training](part5/39_data_pipeline_training.ipynb) · **[40_project_training](part5/40_project_training.ipynb)** · [41_evaluation](part5/41_evaluation.ipynb) · [42_deployment](part5/42_deployment.ipynb) |
 
 ---
 
-### 5파트: AI 에이전트와 프로젝트
+## 📂 Part별 노트북 인덱스 (폴더 탐색용)
 
-#### [09] 바이브 코딩 + Agent 프로토콜 실습
-| 노트북 | 내용 |
-|--------|------|
-| `part5/33_vibe_coding_intro.ipynb` | 바이브 코딩이란? |
-| `part5/34_claude_code_agent.ipynb` | Claude Code를 이용한 AI Agent 구현 실습 |
-| `part5/35_tool_calling_function.ipynb` | Tool Calling Function 만들기 |
-| `part5/36_mcp_agent.ipynb` | MCP(Model Context Protocol) 기반 에이전트 — 서버 직접 구현 + LLM 브리지 |
-| `part5/37_a2a_protocol.ipynb` | A2A(Agent-to-Agent) 프로토콜 — 에이전트 간 표준 통신 |
+| Part | 폴더 | 노트북 수 | 주제 |
+|:-:|---|:-:|---|
+| **1** | [part1/](part1/) | 7 | LLM 기초 · Transformer · HF · LangChain · microGPT |
+| **2** | [part2/](part2/) | 13 | 지식증류 · MoE · SFT · LoRA · 데이터 합성 · Instruction Tuning |
+| **3** | [part3/](part3/) | 10 | RL 기초 · DPO · DeepSeek R1 · GRPO · 양자화 · vLLM |
+| **4** | [part4/](part4/) | 7 | RAG 기초 · Advanced · Graph RAG · Ontology RAG · 평가 |
+| **5** | [part5/](part5/) | 10 | Vibe Coding · Tool Calling · MCP · A2A · LangGraph · 통합 프로젝트 |
 
-#### [10] 프로젝트 실습: 특정 도메인에 최적화된 sLLM 파인튜닝
-| 노트북 | 내용 |
-|--------|------|
-| `part5/38_agent_tech_stack_langgraph.ipynb` | Agent AI 기술 스택, LangGraph 기반 워크플로우 |
-| `part5/39_data_pipeline_training.ipynb` | 데이터 수집 → 정제 파이프라인 |
-| `part5/40_project_training.ipynb` | 학습 수행 |
-| `part5/41_evaluation.ipynb` | 성능 평가 및 반복 개선 |
-| `part5/42_deployment.ipynb` | 배포 |
+**총 47개 노트북 · 약 120시간 분량**
 
 ---
 
-## 수강 추천
+## 🎬 강의 자료 (PPT)
 
-- LLM의 내재화 또는 전략적 활용 방법을 수립하고자 하는 분
-- 효과적인 RAG를 구축하고자 하는 분
-- 데이터 보안을 위해 자체 sLLM 구축을 계획하시는 분
-- LLM과 GPT에 대한 이해를 넓히고자 하는 분
-- 자체적인 인공지능 에이전트를 구현하고자 하는 분
-
-## 교재
-
-- 딥러닝 개념과 활용 (김의중, 미리어드스페이스)
+| 위치 | 내용 |
+|---|---|
+| [part4/part4_day1_PM_session28.pptx](part4/part4_day1_PM_session28.pptx) | 10일차 오후 · 28 RAG 실습 + Streamlit |
+| [part4/part4_day2_AM_session29.pptx](part4/part4_day2_AM_session29.pptx) | 11일차 오전 · 29 Advanced RAG |
+| [part4/part4_day2_PM_session30.pptx](part4/part4_day2_PM_session30.pptx) | 11일차 오후 · 30 Graph RAG |
+| [part4/part4_day3_AM_session31.pptx](part4/part4_day3_AM_session31.pptx) | 12일차 오전 · 31 Ontology RAG (48장) |
+| [part4/part4_day3_PM_session32.pptx](part4/part4_day3_PM_session32.pptx) | 12일차 오후 · 32 RAG 평가 |
+| [part4/rdf_concept.pptx](part4/rdf_concept.pptx) | RDF 개념 한 장 정리 (보조) |
+| [part5/part5_mcp_lecture.pptx](part5/part5_mcp_lecture.pptx) | 14일차 · MCP 강의자료 (10장) |
+| [part5/part5_a2a_lecture.pptx](part5/part5_a2a_lecture.pptx) | 14일차 · A2A 강의자료 (10장) |
+| [part3/rlhf_to_dpo_slides.pptx](part3/rlhf_to_dpo_slides.pptx) | 8일차 보조 · RLHF→DPO 개념 |
 
 ---
 
-**© Copyright AIDENTIFY. All rights reserved.**
+## 🛠 활용 도구
+
+| 분류 | 도구 |
+|---|---|
+| **LLM API** | OpenAI (GPT-4o) · Anthropic (Claude) · Gemini · HuggingFace Inference |
+| **로컬 모델** | Ollama · Llama 3.2 · vLLM · llama.cpp |
+| **벡터 DB** | ChromaDB · pgvector · FAISS |
+| **그래프 DB** | Neo4j · Apache AGE (PostgreSQL 확장) |
+| **에이전트** | LangChain · LangGraph · MCP (FastMCP) · A2A · Anthropic SDK |
+| **파인튜닝** | HuggingFace Transformers · TRL · PEFT · Unsloth · DeepSpeed |
+| **양자화** | bitsandbytes · auto-gptq · autoawq · llama-cpp-python |
+| **평가** | RAGAS · NLTK · ROUGE · BERTScore · LLM-as-a-Judge |
+| **배포** | FastAPI · Streamlit · uvicorn · Docker |
+| **컨테이너** | Docker (Apache AGE / Neo4j / Ollama) |
+
+---
+
+## 📊 학습 진행도 추적
+
+각 일차 종료 후 다음을 확인:
+
+- [ ] 해당 일차 메인 노트북(굵은 글씨) 끝까지 실행 성공
+- [ ] 셀 출력 결과를 PPT/노트와 비교해 의미 파악
+- [ ] 핵심 함수/클래스를 노트에 옮겨 적기
+- [ ] 다음 일차의 노트북 첫 3개 셀 미리보기
+
+> 📌 **권장 순서**: 처음 학습 시 일차 순서대로(1→15)
+> **참조 학습 시**: Part 단위(폴더)로 묶어서
+
+---
+
+## 📚 참고 자료
+
+- 📖 **김의중**, 『딥러닝 개념과 활용』, 미어드스페이스
+- 🌐 [Anthropic MCP 공식 문서](https://modelcontextprotocol.io/)
+- 🌐 [A2A Protocol Spec](https://github.com/google/a2a-protocol) (Google)
+- 🌐 [LangGraph Documentation](https://langchain-ai.github.io/langgraph/)
+- 🌐 [HuggingFace TRL](https://huggingface.co/docs/trl/)
+- 🌐 [Apache AGE](https://age.apache.org/) · [Neo4j Cypher](https://neo4j.com/docs/cypher-manual/)
+
+---
+
+## 🆘 자주 발생하는 문제
+
+| 증상 | 원인 / 해결 |
+|---|---|
+| `CUDA out of memory` | 배치 크기 ↓ , `gradient_checkpointing=True` , bf16 / fp16 |
+| `OPENAI_API_KEY not found` | `.env` 미설정 — `cp .env.example .env` 후 키 입력 |
+| `mcp` 모듈 없음 | `pip install "mcp[cli]>=1.2.0"` (또는 `bash setup.sh` 재실행) |
+| Neo4j / AGE 연결 실패 | Docker 컨테이너 미실행 — 노트북 30/31 의 docker 명령 참조 |
+| `unsloth` 설치 실패 | 선택 패키지 — 12c 노트북만 영향, `pip install unsloth --no-deps` |
+| Korean 폰트 깨짐 | matplotlib 한글 폰트 — `fc-cache -fv` 또는 영문 라벨 사용 (본 과정 정책) |
+
+---
+
+## 📝 라이선스
+
+본 교육 자료는 K-DT 강사아카데미 전공 과정용입니다.
+
+© 2026 AIDENTIFY. All rights reserved.

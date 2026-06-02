@@ -54,9 +54,11 @@ sudo apt-get install -y -qq \
     build-essential cmake \
     libaio-dev \
     curl wget git \
-    fonts-nanum fonts-nanum-coding \
-    fonts-noto-cjk \
     > /dev/null 2>&1
+# 한글 폰트는 배포판/버전마다 패키지명이 달라 실패해도 setup을 중단하지 않음 (best-effort)
+# (예: Ubuntu 26.04에서 fonts-nanum-coding 제거됨)
+sudo apt-get install -y -qq fonts-nanum fonts-nanum-extra fonts-noto-cjk > /dev/null 2>&1 \
+    || print_warn "일부 한글 폰트 설치 실패 — 그래프 한글이 깨질 수 있습니다 (수동: sudo apt install fonts-nanum)"
 # matplotlib 폰트 캐시 갱신 (한글 그래프용)
 fc-cache -fv > /dev/null 2>&1 || true
 # matplotlib 자체 캐시도 stale 일 수 있으므로 제거 (다음 import 시 자동 재구축)

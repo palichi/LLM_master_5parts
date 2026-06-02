@@ -55,47 +55,147 @@ cp .env.example .env
 
 ## 📅 5 Parts × 3일 = 15일 커리큘럼
 
-각 Part = 1주차 = 3일치 분량 · 매일 8시간 · 이론 + 실습. **굵은 글씨** = 메인 실습 노트북.
+각 Part = 1주차 = 3일치 분량 · 매일 8시간 (오전 4h + 오후 4h) · 이론 + 실습.
+
+---
 
 ### Part 1 — LLM 기초: 딥러닝부터 microGPT까지
 
-| 일차 | 주제 | 노트북 |
-|:-:|---|---|
-| **1일차** | LLM 현황 · 딥러닝 기초 · 자연어 처리 · 순차 모델 (RNN/LSTM/Seq2Seq) | **[01_deep_learning_basics](part1/01_deep_learning_basics.ipynb)** · [02_nlp_encoding_tokenization](part1/02_nlp_encoding_tokenization.ipynb) |
-| **2일차** | Transformer 아키텍처 · GPT/BERT · HuggingFace 생태계 · LangChain | [03_transformer_bert_gpt](part1/03_transformer_bert_gpt.ipynb) · [04_llm_overview_sllm](part1/04_llm_overview_sllm.ipynb) · **[05_huggingface_ecosystem](part1/05_huggingface_ecosystem.ipynb)** · **[06_langchain_practice](part1/06_langchain_practice.ipynb)** |
-| **3일차** | microGPT 한국어 실습 — 243줄 GPT 직접 구현 (의존성 0, GPU 불필요) | **[07_microgpt_practice](part1/07_microgpt_practice.ipynb)** |
+#### 1일차 — LLM 현황·딥러닝 기초·언어모델 발전사
 
-### Part 2 — 파인튜닝: 지식증류 · SFT · LoRA · 데이터 파이프라인
+| **🌅 AM — LLM 현황·딥러닝 기초·벡터와 행렬** | **🌇 PM — 언어모델 발전사** |
+|---|---|
+| • 현재 인공지능 현황·LLM 수준·AGI 미래<br>• 딥러닝 기본 개념: 벡터·텐서·행렬곱의 의미<br>• 역전파 기본 개념·경사하강법 | • 언어모델 발전사: LSTM → Seq2Seq → Transformer<br>• 텍스트 인코딩·토큰·토크나이저·임베딩(Word2Vec)<br>• ▶ 실습: 토크나이저, 임베딩 실습 |
 
-| 일차 | 주제 | 노트북 |
-|:-:|---|---|
-| **4일차** | 지식증류 · Scaling Laws (Kaplan/Chinchilla) · MoE (DeepSeek-V3/Mixtral) | **[08_knowledge_distillation](part2/08_knowledge_distillation.ipynb)** · [09_scaling_law](part2/09_scaling_law.ipynb) · [10_moe_deepseek](part2/10_moe_deepseek.ipynb) |
-| **5일차** | SFT 일반·심화 · LoRA/PEFT · Unsloth 가속 | [11_finetuning_overview](part2/11_finetuning_overview.ipynb) · [11a_transformers_trl_basics](part2/11a_transformers_trl_basics.ipynb) · [12a_lora_peft_theory](part2/12a_lora_peft_theory.ipynb) · **[12b_lora_peft_practice](part2/12b_lora_peft_practice.ipynb)** · [12c_unsloth_finetuning](part2/12c_unsloth_finetuning.ipynb) |
-| **6일차** | 고품질 SFT 데이터 구축 · TRL 학습 · Instruction Tuning · LLM-as-Judge | **[13_data_synthetic_distillation](part2/13_data_synthetic_distillation.ipynb)** · [14_sft_huggingface_trl](part2/14_sft_huggingface_trl.ipynb) · [15_continuous_learning](part2/15_continuous_learning.ipynb) · **[16_instruction_tuning](part2/16_instruction_tuning.ipynb)** · [16b_llm_as_judge](part2/16b_llm_as_judge.ipynb) |
+📓 [01_deep_learning_basics](part1/01_deep_learning_basics.ipynb) · [02_nlp_encoding_tokenization](part1/02_nlp_encoding_tokenization.ipynb)
 
-### Part 3 — 정렬·강화학습: RLHF · DPO · GRPO · 양자화 · 서빙
+#### 2일차 — 트랜스포머 아키텍처·HuggingFace 활용
 
-| 일차 | 주제 | 노트북 |
-|:-:|---|---|
-| **7일차** | 양자화 (GPTQ/AWQ/GGUF/QLoRA) + RL 정렬 기초 (MDP·PPO) | **[17_rl_basics_alignment](part3/17_rl_basics_alignment.ipynb)** · [22_quantization_concepts](part3/22_quantization_concepts.ipynb) · [23_gptq_awq_qlora](part3/23_gptq_awq_qlora.ipynb) · **[24_quantization_practice](part3/24_quantization_practice.ipynb)** |
-| **8일차** | DPO vs RLHF — Bradley-Terry · 한국어 DPO 학습 (Llama-3.2-3B + TRL) | [18_preference_data](part3/18_preference_data.ipynb) · **[19_dpo_practice](part3/19_dpo_practice.ipynb)** · 보조: [rlhf_to_dpo_slides.pptx](part3/rlhf_to_dpo_slides.pptx) |
-| **9일차** | GRPO + DeepSeek R1 분석 + Rejection Sampling SFT + vLLM 서빙 | [20_deepseek_r1_analysis](part3/20_deepseek_r1_analysis.ipynb) · [20b_rejection_sampling_sft](part3/20b_rejection_sampling_sft.ipynb) · **[21_grpo_practice](part3/21_grpo_practice.ipynb)** · [25_vllm_serving](part3/25_vllm_serving.ipynb) |
+| **🌅 AM — 트랜스포머 아키텍처 및 학습방법** | **🌇 PM — LLM 현황 & HuggingFace 활용** |
+|---|---|
+| • 트랜스포머의 등장·동작원리 심층이해<br>• 트랜스포머 기반 LLM의 시작: GPT, BERT 심층 비교<br>• LLM의 기본 구조 및 학습 방법 | • LangChain 개념과 활용<br>• HuggingFace 생태계 구조 및 활용 전략<br>• LLM 성능 개선 개요 + ▶ PEFT LoRA 실습 |
+
+📓 [03_transformer_bert_gpt](part1/03_transformer_bert_gpt.ipynb) · [04_llm_overview_sllm](part1/04_llm_overview_sllm.ipynb) · [05_huggingface_ecosystem](part1/05_huggingface_ecosystem.ipynb) · [06_langchain_practice](part1/06_langchain_practice.ipynb)
+
+#### 3일차 — microGPT 직접 구현 + 한국어 실습
+
+| **🌅 AM — microGPT 를 통한 LLM 이해** | **🌇 PM — microGPT 한국어 실습** |
+|---|---|
+| • Karpathy 와 microGPT (243줄 · 의존성 0 · GPU 불필요)<br>• Embedding → Attention → Loss 코드 추적<br>• ▶ 실습: 설치 & 이름 데이터셋 학습 | • 한국어 토크나이저 교체<br>• Loss curve & depth 파라미터 실험<br>• ▶ 실습: 나만의 데이터로 microGPT 학습 |
+
+📓 [07_microgpt_practice](part1/07_microgpt_practice.ipynb)
+
+---
+
+### Part 2 — 파인튜닝: 지식증류·SFT·LoRA·데이터 파이프라인
+
+#### 4일차 — 지식 증류·Scaling Law·MoE·SFT 개념
+
+| **🌅 AM — 지식 증류 및 Scaling Law** | **🌇 PM — MoE 와 SFT 개념** |
+|---|---|
+| • sLLM 의 성능을 LLM 성능으로: 지식증류<br>• 모델 크기 · 데이터 크기 · 성능 상관관계<br>• ▶ 실습: 지식증류 · Scaling Law 계산 | • 추론 속도 향상 기법: MoE<br>• 사용자 의도를 파악하는 SFT<br>• ▶ 실습: DeepSeek MoE · 파인튜닝 일반 |
+
+📓 [08_knowledge_distillation](part2/08_knowledge_distillation.ipynb) · [09_scaling_law](part2/09_scaling_law.ipynb) · [10_moe_deepseek](part2/10_moe_deepseek.ipynb) · [11_finetuning_overview](part2/11_finetuning_overview.ipynb)
+
+#### 5일차 — SFT 일반·심화 (LoRA · PEFT · Unsloth)
+
+| **🌅 AM — SFT 일반** | **🌇 PM — SFT 심화** |
+|---|---|
+| • SFT 필요성<br>• FFT vs PEFT: SFT 파이프라인<br>• ▶ 실습: Transformer TRL · Unsloth 파인튜닝 | • 최신 PEFT 기법: LoRA+ · DoRA · AdaLoRA<br>• 데이터 합성 자동화 기법<br>• LoRA 어댑터 활용 방법 |
+
+📓 [11a_transformers_trl_basics](part2/11a_transformers_trl_basics.ipynb) · [12a_lora_peft_theory](part2/12a_lora_peft_theory.ipynb) · [12b_lora_peft_practice](part2/12b_lora_peft_practice.ipynb) · [12c_unsloth_finetuning](part2/12c_unsloth_finetuning.ipynb)
+
+#### 6일차 — 고품질 데이터 구축 + SFT 최종 실습
+
+| **🌅 AM — 고품질 SFT 데이터 구축** | **🌇 PM — SFT 최종 실습** |
+|---|---|
+| • 데이터 수집 및 구축 전략<br>• LLM 기반 데이터 생성<br>• ▶ 실습: 데이터 구축 파이프라인 | • ▶ 실습: HuggingFace Transformer TRL<br>• ▶ 실습: Continuous Learning · Instruction Tuning<br>• ▶ 실습: LLM-as-a-Judge |
+
+📓 [13_data_synthetic_distillation](part2/13_data_synthetic_distillation.ipynb) · [14_sft_huggingface_trl](part2/14_sft_huggingface_trl.ipynb) · [15_continuous_learning](part2/15_continuous_learning.ipynb) · [16_instruction_tuning](part2/16_instruction_tuning.ipynb) · [16b_llm_as_judge](part2/16b_llm_as_judge.ipynb)
+
+---
+
+### Part 3 — 정렬·강화학습: RLHF · DPO · GRPO · 양자화
+
+#### 7일차 — 강화학습 기초·RLHF·PPO
+
+| **🌅 AM — 강화학습 기초 및 RLHF 개념** | **🌇 PM — RLHF 파이프라인과 PPO** |
+|---|---|
+| • MDP · Policy · Value Function · 보상 모델<br>• LLM 에서 선호도 학습의 필요성<br>• ChatGPT 에 최초로 적용된 강화학습 | • RLHF 파이프라인<br>• 보상 모델 및 PPO 알고리즘<br>• ▶ 실습: LLM 정렬 개념 일반 |
+
+📓 [17_rl_basics_alignment](part3/17_rl_basics_alignment.ipynb)
+
+#### 8일차 — DPO + DeepSeek R1 의 GRPO
+
+| **🌅 AM — 복잡한 RLHF 를 개선한 DPO** | **🌇 PM — DeepSeek R1 의 GRPO** |
+|---|---|
+| • RLHF · PPO 문제점과 DPO 등장<br>• Bradley-Terry 모델 기반 DPO 개념<br>• ▶ 실습: DPO 학습 데이터 구축 + 강화학습 | • DPO 한계 및 GRPO 등장<br>• CoT + GRPO 로 구현한 "Aha Moment"<br>• ▶ 실습: DeepSeek R1 파이프라인 + GRPO 구현 |
+
+📓 [18_preference_data](part3/18_preference_data.ipynb) · [19_dpo_practice](part3/19_dpo_practice.ipynb) · [20_deepseek_r1_analysis](part3/20_deepseek_r1_analysis.ipynb) · [21_grpo_practice](part3/21_grpo_practice.ipynb)
+
+#### 9일차 — GRPO 정리 + 양자화 + vLLM 배포
+
+| **🌅 AM — GRPO 정리 및 최신 강화학습 기법** | **🌇 PM — 양자화 이론 및 실습** |
+|---|---|
+| • GRPO 이후 최신 강화학습 연구<br>• 강화학습 최종 정리<br>• 실습 결과 토론 | • 모델 성능 최적화: 양자화 개념<br>• 다양한 양자화 기법 + vLLM 기반 배포<br>• ▶ 실습: 양자화 · vLLM |
+
+📓 [20b_rejection_sampling_sft](part3/20b_rejection_sampling_sft.ipynb) · [22_quantization_concepts](part3/22_quantization_concepts.ipynb) · [23_gptq_awq_qlora](part3/23_gptq_awq_qlora.ipynb) · [24_quantization_practice](part3/24_quantization_practice.ipynb) · [25_vllm_serving](part3/25_vllm_serving.ipynb)
+
+---
 
 ### Part 4 — RAG: Vector · Advanced · Graph · Ontology
 
-| 일차 | 주제 | 노트북 |
-|:-:|---|---|
-| **10일차** | RAG 기술 스택 (기초·벡터DB·실습·평가) + Streamlit 챗봇 배포 | [26_rag_fundamentals](part4/26_rag_fundamentals.ipynb) · [27_vector_db_comparison](part4/27_vector_db_comparison.ipynb) · **[28_rag_practice](part4/28_rag_practice.ipynb)** + [Streamlit 앱](part4/28_rag_streamlit_app/) · [32_rag_evaluation](part4/32_rag_evaluation.ipynb) |
-| **11일차** | Graph RAG — Neo4j · Apache AGE · LangChain GraphRAG · 4-hop 멀티홉 | [29_advanced_rag_base](part4/29_advanced_rag_base.ipynb) · **[30_graph_rag](part4/30_graph_rag.ipynb)** + [companies.txt](part4/data/companies.txt) |
-| **12일차** | Ontology RAG · 팔란티어 전략 · 월드 모델 (기업 거버넌스 + 1인 1회장 제약) | **[31_ontology_rag](part4/31_ontology_rag.ipynb)** (OntologyReasoner + OntologyWorldModel) |
+#### 10일차 — RAG 기본 + Vector DB + LangChain 구현
 
-### Part 5 — 에이전트: Vibe Coding · MCP · A2A · LangGraph · 통합 프로젝트
+| **🌅 AM — RAG & Vector DB** | **🌇 PM — LangChain 기반 기본 RAG 구현** |
+|---|---|
+| • LLM 최신 지식 증강 필요성<br>• RAG 기본 개념<br>• Pinecone · Weaviate · Milvus · Chroma 비교 | • RAG 에 사용되는 기술 & 사례<br>• 검색 도구: ChromaDB · pgvector<br>• ▶ 실습: LangChain 기반 RAG 구현 + Streamlit 배포 |
 
-| 일차 | 주제 | 노트북 |
-|:-:|---|---|
-| **13일차** | Vibe Coding 개념 + Claude Code 실습 환경 구축 | **[33_vibe_coding_intro](part5/33_vibe_coding_intro.ipynb)** · [34_claude_code_agent](part5/34_claude_code_agent.ipynb) |
-| **14일차** | Agentic AI — Tool Calling · MCP · A2A · LangGraph 멀티 에이전트 | [35_tool_calling_function](part5/35_tool_calling_function.ipynb) · **[36_mcp_agent](part5/36_mcp_agent.ipynb)** · **[37_a2a_protocol](part5/37_a2a_protocol.ipynb)** · [38_agent_tech_stack_langgraph](part5/38_agent_tech_stack_langgraph.ipynb) |
-| **15일차** | 프로젝트 발표 & 배포 — MCP+LangGraph+A2A 통합 에이전트 (FastAPI 배포) | [39_data_pipeline_training](part5/39_data_pipeline_training.ipynb) · **[40_project_training](part5/40_project_training.ipynb)** · [41_evaluation](part5/41_evaluation.ipynb) · [42_deployment](part5/42_deployment.ipynb) |
+📓 [26_rag_fundamentals](part4/26_rag_fundamentals.ipynb) · [27_vector_db_comparison](part4/27_vector_db_comparison.ipynb) · [28_rag_practice](part4/28_rag_practice.ipynb) + [Streamlit 앱](part4/28_rag_streamlit_app/)
+
+#### 11일차 — Advanced RAG + Graph RAG
+
+| **🌅 AM — Advanced RAG** | **🌇 PM — 그래프 RAG 개념 및 구축** |
+|---|---|
+| • 전통적 RAG 의 한계<br>• HyDE · ReRanking · Parent Document · Ensemble<br>• ▶ 실습: Advanced RAG 구현 | • 그래프 RAG: Neo4j · PostgreSQL AGE<br>• Neo4j 설치 및 Cypher 쿼리 기초<br>• ▶ 실습: 그래프 RAG 서비스 구축 (companies.txt) |
+
+📓 [29_advanced_rag_base](part4/29_advanced_rag_base.ipynb) · [30_graph_rag](part4/30_graph_rag.ipynb) + [companies.txt](part4/data/companies.txt)
+
+#### 12일차 — 온톨로지 개념 + 시스템 구현
+
+| **🌅 AM — 온톨로지 개념** | **🌇 PM — 온톨로지 시스템 구현** |
+|---|---|
+| • 데이터 한계의 새로운 돌파구: 온톨로지<br>• 온톨로지 성공사례: 팔란티어 전략<br>• 온톨로지 개념·범위·제약조건 정의 | • 온톨로지 데이터베이스 구축<br>• ▶ 실습: 온톨로지 기반의 월드 모델 구현<br>• ▶ 실습: RAG 평가 방법 |
+
+📓 [31_ontology_rag](part4/31_ontology_rag.ipynb) (기업 거버넌스 · OntologyWorldModel) · [32_rag_evaluation](part4/32_rag_evaluation.ipynb)
+
+---
+
+### Part 5 — 에이전트: Vibe Coding · MCP · A2A · LangGraph · 프로젝트
+
+#### 13일차 — Vibe Coding 개념 + 환경 설정
+
+| **🌅 AM — 바이브 코딩** | **🌇 PM — 바이브 코딩 환경 설정** |
+|---|---|
+| • 바이브 코딩의 개념과 현황<br>• 바이브 코딩 적용 사례<br>• 바이브 코딩 한계와 개선 방안 | • Claude Code · Windsurf · Copilot 환경 비교<br>• Claude Code 기반의 서비스 구축<br>• 바이브 코딩 방향성 |
+
+📓 [33_vibe_coding_intro](part5/33_vibe_coding_intro.ipynb) · [34_claude_code_agent](part5/34_claude_code_agent.ipynb)
+
+#### 14일차 — Agent AI + MCP/A2A 활용
+
+| **🌅 AM — Agent AI** | **🌇 PM — MCP 와 A2A 활용** |
+|---|---|
+| • Agent AI 기술 스택<br>• LangGraph · AG2 · Windsurf 소개<br>• ▶ 실습: LangGraph 기반 Agent AI 구현 | • Tool Calling 학습 및 MCP 활용<br>• A2A 기반 멀티 에이전트<br>• ▶ 실습: Tool Calling · MCP · A2A 구현 |
+
+📓 [38_agent_tech_stack_langgraph](part5/38_agent_tech_stack_langgraph.ipynb) · [35_tool_calling_function](part5/35_tool_calling_function.ipynb) · [36_mcp_agent](part5/36_mcp_agent.ipynb) · [37_a2a_protocol](part5/37_a2a_protocol.ipynb)
+
+#### 15일차 — 프로젝트 소개·구성 + 진행·평가
+
+| **🌅 AM — 프로젝트 소개 및 팀 구성** | **🌇 PM — 프로젝트 진행 및 평가** |
+|---|---|
+| • 팀당 3명 (최소 유경험자 1명 포함 리더 역할)<br>• 서비스 도메인 선정 및 데이터 구축<br>• 서비스 MVP 정의 | • 수업 시 배운 기술 스택 활용<br>• 5분 발표 + 5분 질의 응답<br>• 과정 평가 및 수료식 |
+
+📓 [39_data_pipeline_training](part5/39_data_pipeline_training.ipynb) · **[40_project_training](part5/40_project_training.ipynb)** (MCP+LangGraph+A2A 통합 에이전트) · [41_evaluation](part5/41_evaluation.ipynb) · [42_deployment](part5/42_deployment.ipynb)
 
 ---
 
@@ -110,22 +210,6 @@ cp .env.example .env
 | **5** | [part5/](part5/) | 10 | Vibe Coding · Tool Calling · MCP · A2A · LangGraph · 통합 프로젝트 |
 
 **총 47개 노트북 · 약 120시간 분량**
-
----
-
-## 🎬 강의 자료 (PPT)
-
-| 위치 | 내용 |
-|---|---|
-| [part4/part4_day1_PM_session28.pptx](part4/part4_day1_PM_session28.pptx) | 10일차 오후 · 28 RAG 실습 + Streamlit |
-| [part4/part4_day2_AM_session29.pptx](part4/part4_day2_AM_session29.pptx) | 11일차 오전 · 29 Advanced RAG |
-| [part4/part4_day2_PM_session30.pptx](part4/part4_day2_PM_session30.pptx) | 11일차 오후 · 30 Graph RAG |
-| [part4/part4_day3_AM_session31.pptx](part4/part4_day3_AM_session31.pptx) | 12일차 오전 · 31 Ontology RAG (48장) |
-| [part4/part4_day3_PM_session32.pptx](part4/part4_day3_PM_session32.pptx) | 12일차 오후 · 32 RAG 평가 |
-| [part4/rdf_concept.pptx](part4/rdf_concept.pptx) | RDF 개념 한 장 정리 (보조) |
-| [part5/part5_mcp_lecture.pptx](part5/part5_mcp_lecture.pptx) | 14일차 · MCP 강의자료 (10장) |
-| [part5/part5_a2a_lecture.pptx](part5/part5_a2a_lecture.pptx) | 14일차 · A2A 강의자료 (10장) |
-| [part3/rlhf_to_dpo_slides.pptx](part3/rlhf_to_dpo_slides.pptx) | 8일차 보조 · RLHF→DPO 개념 |
 
 ---
 

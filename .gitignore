@@ -8,3 +8,7 @@ output/
 outputs/
 _original/
 venv-quant/
+
+# Unsloth 런타임 자동 생성 캐시
+unsloth_compiled_cache/
+**/unsloth_compiled_cache/

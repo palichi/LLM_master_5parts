@@ -144,7 +144,7 @@ mpip "unsloth" --no-deps -q     || print_warn "Unsloth 설치 실패 — 21 노�
 
 # Agent / MCP / LangGraph (langgraph<1.0)  +  Graph DB / KG
 mpip "mcp[cli]>=1.2.0" "langgraph>=0.2.0,<1.0" -q
-mpip "neo4j>=5.0.0" "psycopg2-binary>=2.9.0" "rdflib>=7.0.0" "faiss-cpu>=1.7.4" -q
+mpip "neo4j>=5.0.0" "psycopg2-binary>=2.9.0" "rdflib>=7.0.0" "pyoxigraph>=0.5.0" "faiss-cpu>=1.7.4" -q
 print_ok "메인 스택 설치 완료"
 
 # ----- 6. 양자화 전용 환경 (venv-quant, 3.11) -----
@@ -224,7 +224,7 @@ import importlib
 pkgs = ['torch','transformers','peft','trl','datasets','accelerate','bitsandbytes',
     'langchain','langchain_openai','langchain_community','langchain_experimental',
     'chromadb','openai','anthropic','tiktoken','sentence_transformers','gensim',
-    'networkx','neo4j','psycopg2','rdflib','faiss','mcp','langgraph','httpx','fastapi',
+    'networkx','neo4j','psycopg2','rdflib','pyoxigraph','faiss','mcp','langgraph','httpx','fastapi',
     'pydantic','streamlit','vllm','pypdf']
 for p in pkgs:
     try:

@@ -42,6 +42,10 @@ cd LLM_master_5parts
 bash setup.sh
 
 chmod 600 /home/hpe/LLM_master_5parts/kdt_class.pem
+
+    PubkeyAcceptedKeyTypes +ssh-rsa
+    StrictHostKeyChecking accept-new
+
 # 3) API 키 입력
 cp .env.example .env
 #   .env 에 OPENAI_API_KEY, ANTHROPIC_API_KEY, HF_TOKEN 채우기

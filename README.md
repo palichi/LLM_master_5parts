@@ -173,7 +173,7 @@ cp .env.example .env
 |---|---|
 | • 데이터 한계의 새로운 돌파구: 온톨로지<br>• 온톨로지 성공사례: 팔란티어 전략<br>• 온톨로지 개념·범위·제약조건 정의 | • 온톨로지 데이터베이스 구축<br>• ▶ 실습: 온톨로지 기반의 월드 모델 구현<br>• ▶ 실습: RAG 평가 방법 |
 
-📓 [31_ontology_rag](part4/31_ontology_rag.ipynb) (기업 거버넌스 · OntologyWorldModel) · [32_rag_evaluation](part4/32_rag_evaluation.ipynb)
+📓 [31_ontology_rag](part4/31_ontology_rag.ipynb) (의학: 질환·약물 온톨로지 · RDF/OWL 추론) · [32_rag_evaluation](part4/32_rag_evaluation.ipynb)
 
 ---
 
